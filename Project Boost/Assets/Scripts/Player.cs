@@ -6,8 +6,7 @@ public class Player : MonoSingleton<Player>
 {
     [SerializeField] private float thrustForce;
     [SerializeField] private float thrustRotation;
-    [SerializeField] private ParticleSystem _thrustParticle;
-    
+    [SerializeField] private ParticleSystem thrustParticle;
     private Rigidbody _rigidbody;
 
     private bool isAlive = true;
@@ -46,7 +45,7 @@ public class Player : MonoSingleton<Player>
     {
         PlayerLook.Instance.DarkenSurfaceColor();
         AudioManager.Instance.StopSound();
-        _thrustParticle.Stop();
+        thrustParticle.Stop();
     }
 
     private void StartThrusting()
@@ -60,9 +59,9 @@ public class Player : MonoSingleton<Player>
 
         PlayerLook.Instance.BrightenSurfaceColor();
 
-        if (!_thrustParticle.isPlaying)
+        if (!thrustParticle.isPlaying)
         {
-            _thrustParticle.Play();
+            thrustParticle.Play();
         }
     }
 

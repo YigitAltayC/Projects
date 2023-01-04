@@ -10,6 +10,7 @@ public class PlayerLook : MonoSingleton<PlayerLook>
     
     private Transform _outerSurfaces;
     private Transform _innerSurfaces;
+    [SerializeField] private GameObject lights;
 
     private Color _outerColor = new Color();
     private Color _innerColor = new Color();
@@ -17,6 +18,7 @@ public class PlayerLook : MonoSingleton<PlayerLook>
     private const string _outerColorHex = "#008FA1";
     private const string _innerColorHex = "#00FFE0";
 
+    
     private int colorIndex = 0;
     
     
@@ -35,6 +37,7 @@ public class PlayerLook : MonoSingleton<PlayerLook>
 
     public void BrightenSurfaceColor()
     {
+        lights.SetActive(true);
         foreach (Transform surface in _surfaces[colorIndex])
         {
             surface.GetComponent<MeshRenderer>().material.color = _colors[colorIndex];
@@ -57,7 +60,8 @@ public class PlayerLook : MonoSingleton<PlayerLook>
 
         colorIndex--;
         
-        
+        lights.SetActive(false);
+
         if (colorIndex <= 0)
             colorIndex = 0;
     }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
+
+    [SerializeField] private ParticleSystem explosionParticle;
     
     // Sahne geçişi yaparken collision detectlemeyi engelle
     private void OnCollisionEnter(Collision collision)
@@ -25,6 +27,7 @@ public class PlayerCollisionHandler : MonoBehaviour
                 return;
             default:
                 AudioManager.Instance.PlaySound(GameSFX.PlayerDeathSFX);
+                ParticleSpawner.SpawnParticle(transform, explosionParticle);
                 break;
             
         }
